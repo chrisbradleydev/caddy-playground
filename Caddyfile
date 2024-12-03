@@ -1,0 +1,16 @@
+# https://caddyserver.com/docs/caddyfile/options
+{
+	debug
+	local_certs
+	auto_https disable_redirects
+	admin :2019
+}
+
+# https://caddyserver.com/docs/caddyfile/directives/reverse_proxy
+nginx.test:80 {
+	reverse_proxy nginx.test:80
+}
+nginx.test:443 {
+	tls internal
+	reverse_proxy nginx.test:80
+}
